@@ -39,16 +39,6 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;Speedia&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>180</y>
-      <width>381</width>
-      <height>411</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
@@ -263,27 +253,46 @@
      <string>Search!</string>
     </property>
    </widget>
-   <widget class="QScrollBar" name="verticalScrollBar">
+   <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>900</x>
+      <x>520</x>
       <y>180</y>
-      <width>21</width>
-      <height>411</height>
+      <width>401</width>
+      <height>401</height>
      </rect>
     </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
+    <property name="widgetResizable">
+     <bool>true</bool>
     </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>399</width>
+       <height>399</height>
+      </rect>
+     </property>
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>401</width>
+        <height>401</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <zorder>groupBox</zorder>
    <zorder>label</zorder>
-   <zorder>textBrowser</zorder>
    <zorder>label_6</zorder>
    <zorder>BRadioButton</zorder>
    <zorder>BPlusRadioButton</zorder>
    <zorder>pushButton</zorder>
-   <zorder>verticalScrollBar</zorder>
+   <zorder>scrollArea</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -298,22 +307,5 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>verticalScrollBar</sender>
-   <signal>sliderMoved(int)</signal>
-   <receiver>textBrowser</receiver>
-   <slot>forward()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>914</x>
-     <y>249</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>840</x>
-     <y>253</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
