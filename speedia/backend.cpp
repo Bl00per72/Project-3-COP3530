@@ -171,7 +171,7 @@ void BackEnd::beginSearch(const QString &x)
     if(x == "avl")
         atree.searchCar(brand, atree.getRoot(), price, mileage, results);
     else if(x == "bst")
-        btree.searchCar(brand, btree.getRoot(), price, mileage);
+        btree.searchCar(brand, btree.getRoot(), price, mileage, results);
 
     //q_results.clear();
     for (int i = 0; i < results.size(); i++)

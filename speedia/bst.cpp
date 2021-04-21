@@ -27,17 +27,17 @@ BST::Node* BST::insertdataID(Node* root, string brand, string model, string year
     return root;
 }
 
-bool BST::searchCar(string brand, Node* root, string price, string mileage)
+vector<string> BST::searchCar(string brand, Node* root, string price, string mileage, vector<string> &s)
 {
     // If tree is empty, print unsuccessful
     if (this->root == nullptr)
     {
-        return false;
+        return s;
     }
     // If current node is null, return
     else if (root == nullptr)
     {
-        return true;
+        return s;
     }
     // Current node exists
     else
@@ -45,26 +45,18 @@ bool BST::searchCar(string brand, Node* root, string price, string mileage)
         // If current node's data is equal to target data, print ID and keep traversing through tree
         if (root->brand == brand && stoi(root->price) <= stoi(price) && stoi(root->mileage) <= stoi(mileage))
         {
-            cout << root->brand << " " << root->model << ", Year: " << root->year << " Price: " << root->price << " Transmission: "
-                << root->tran << " Mileage: " << root->mileage << " Fuel Type: " << root->fuelType << " MPG: " << root->mpg << " Engine Size: " << root->engineSize << endl;
-            //cout << endl;
-            searchCar(brand, root->left, price, mileage);
-            searchCar(brand, root->right, price, mileage);
+            s.push_back(root->brand + "\t" + root->model + "\t" + root->year + "\t" + root->price + "\t"
+                + root->tran + "\t\t" + root->mileage + "\t" + root-> fuelType + "\t" + root->mpg + "\t" + root->engineSize);
+
+            searchCar(brand, root->left, price, mileage, s);
+            searchCar(brand, root->right, price, mileage, s);
         }
         // If current node's data is not equal to target data, keep traversing through tree
         else
         {
-            searchCar(brand, root->left, price, mileage);
-            searchCar(brand, root->right, price, mileage);
-        }
-        // If tree contains data, return true. Else, print unsuccessful
-        if (root == this->root)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
+            searchCar(brand, root->left, price, mileage, s);
+            searchCar(brand, root->right, price, mileage, s);
         }
     }
+    return s;
 }

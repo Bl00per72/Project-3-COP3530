@@ -2,6 +2,7 @@
 #define BST_H
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class BST
@@ -48,7 +49,7 @@ class BST
 
 public:
     Node* insertdataID(Node* root, string brand, string model, string year, string price, string tran, string mileage, string fuelType, string tax, string mpg, string engineSize, long ID);
-    bool searchCar(string brand, Node* root, string price, string mileage);
+    vector<string> searchCar(string brand, Node* root, string price, string mileage, vector<string> &s);
     void setRoot(Node* root)
     {
         // Sets root
