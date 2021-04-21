@@ -3,7 +3,6 @@
         <file>main.qml</file>
         <file>HomeForm.ui.qml</file>
         <file>Search.ui.qml</file>
-        <file>Results.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>

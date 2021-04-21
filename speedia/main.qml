@@ -14,13 +14,12 @@ ApplicationWindow {
 
         ToolButton {
             id: toolButton
-            text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+            text: stackView.depth > 1 ? "\u25C0" : ""
             font.pixelSize: Qt.application.font.pixelSize * 1.6
             onClicked: {
                 if (stackView.depth > 1) {
                     stackView.pop()
                 } else {
-                    drawer.open()
                 }
             }
         }
@@ -36,26 +35,7 @@ ApplicationWindow {
         width: window.width * 0.66
         height: window.height
 
-        Column {
-            anchors.fill: parent
 
-            ItemDelegate {
-                text: qsTr("Search")
-                width: parent.width
-                onClicked: {
-                    stackView.push("Search.ui.qml")
-                    drawer.close()
-                }
-            }
-            ItemDelegate {
-                text: qsTr("Results")
-                width: parent.width
-                onClicked: {
-                    stackView.push("Results.ui.qml")
-                    drawer.close()
-                }
-            }
-        }
     }
 
     StackView {

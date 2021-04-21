@@ -12,7 +12,9 @@ QML_IMPORT_MAJOR_VERSION = 1
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        avltree.cpp \
         backend.cpp \
+        bst.cpp \
         main.cpp
 
 RESOURCES += qml.qrc \
@@ -34,4 +36,6 @@ DISTFILES += \
     img/car.png
 
 HEADERS += \
-    backend.h
+    avltree.h \
+    backend.h \
+    bst.h

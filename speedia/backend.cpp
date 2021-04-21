@@ -1,12 +1,103 @@
 #include "backend.h"
+#include <sstream>
+#include <fstream>
 
 BackEnd::BackEnd(QObject *parent) :
     QObject(parent)
 {
+    // AVL Start Time
+
+    ifstream file ("C:/Users/QUO/Documents/speedia/cars_shuffled.csv");
+
+    string junk;
+    getline(file, junk);
+
+    string b;
+    string c;
+    string d;
+    string e;
+    string f;
+    string g;
+    string h;
+    string i;
+    string j;
+    string k;
+    string l;
+    getline(file, b, ',');
+    getline(file, c, ',');
+    getline(file, d, ',');
+    getline(file, e, ',');
+    getline(file, f, ',');
+    getline(file, g, ',');
+    getline(file, h, ',');
+    getline(file, i, ',');
+    getline(file, j, ',');
+    getline(file, k, ',');
+    getline(file, l);
+    atree.setRoot(atree.insertdataID(nullptr, c, d, e, f, g, h, i, j, k, l, stoi(b)));
+
+    while (stoi(b) < 1000)
+    {
+        getline(file,b,',');
+        getline(file,c,',');
+        getline(file,d,',');
+        getline(file,e,',');
+        getline(file,f,',');
+        getline(file,g,',');
+        getline(file,h,',');
+        getline(file,i,',');
+        getline(file,j,',');
+        getline(file,k,',');
+        getline(file,l);
+        atree.insertdataID(atree.getRoot(), c, d, e, f, g, h, i, j, k, l, stoi(b));
+    }
+
+    // AVL End Time
+
+
+    // BST Start Time
+
+    file.seekg(0, std::ios::beg); //reset file pointer to beg
+
+    string junk2;
+    getline(file, junk2);
+
+    getline(file, b, ',');
+    getline(file, c, ',');
+    getline(file, d, ',');
+    getline(file, e, ',');
+    getline(file, f, ',');
+    getline(file, g, ',');
+    getline(file, h, ',');
+    getline(file, i, ',');
+    getline(file, j, ',');
+    getline(file, k, ',');
+    getline(file, l);
+    btree.setRoot(btree.insertdataID(nullptr, c, d, e, f, g, h, i, j, k, l, stoi(b)));
+
+    while (stoi(b) < 1000)
+    {
+        getline(file,b,',');
+        getline(file,c,',');
+        getline(file,d,',');
+        getline(file,e,',');
+        getline(file,f,',');
+        getline(file,g,',');
+        getline(file,h,',');
+        getline(file,i,',');
+        getline(file,j,',');
+        getline(file,k,',');
+        getline(file,l);
+        btree.insertdataID(btree.getRoot(), c, d, e, f, g, h, i, j, k, l, stoi(b));
+    }
+
+    file.close();
+
+    // BST End Time
 }
 
 
-QString BackEnd::brand()
+QString BackEnd::getbrand()
 {
     return m_brand;
 }
@@ -19,7 +110,7 @@ void BackEnd::setBrand(const QString &brand)
     m_brand = brand;
 }
 
-QString BackEnd::price()
+QString BackEnd::getprice()
 {
     return m_price;
 }
@@ -32,7 +123,7 @@ void BackEnd::setPrice(const QString &price)
      m_price = price;
 }
 
-QString BackEnd::mileage()
+QString BackEnd::getmileage()
 {
     return m_mileage;
 }
@@ -45,20 +136,54 @@ void BackEnd::setMileage(const QString &mileage)
     m_mileage = mileage;
 }
 
-QString BackEnd::treeType()
+bool BackEnd::readyToSearch()
 {
-    return m_treeType;
+    return true;
 }
 
-void BackEnd::setTreeType(const QString &treeType)
+void BackEnd::beginSearch(const QString &x)
 {
-    if (treeType == m_treeType)
-        return;
+    QString getter;
+    string brand;
+    string price;
+    string mileage;
+    string treeType;
 
-    m_treeType = treeType;
+    getter = getbrand();
+    brand = getter.toLocal8Bit().constData();
+
+    for(int i = 0; i < brand.size(); i++)
+    {
+        if(brand.at(i) >= 65 && brand.at(i) <= 90)
+            brand.at(i) += 32;
+    }
+
+    getter = getprice();
+    price = getter.toLocal8Bit().constData();
+
+    getter = getmileage();
+    mileage = getter.toLocal8Bit().constData();
+
+    vector<string> results;
+
+    if(x == "avl")
+        atree.searchCar(brand, atree.getRoot(), price, mileage, results);
+    else if(x == "bst")
+        btree.searchCar(brand, btree.getRoot(), price, mileage);
+
+    //q_results.clear();
+    for (int i = 0; i < results.size(); i++)
+    {
+        QString line = QString::fromStdString(results[i]);
+        q_results.append(line + '\n');
+    }
+
 }
 
-bool BackEnd::searchTree()
-{
-    m_searchTree = true;
+/*void BackEnd::setResults(std::vector<std::string> text) {
+
+}*/
+
+QString BackEnd::getResults() {
+    return q_results;
 }
