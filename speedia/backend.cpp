@@ -36,7 +36,7 @@ BackEnd::BackEnd(QObject *parent) :
     getline(file, l);
     atree.setRoot(atree.insertdataID(nullptr, c, d, e, f, g, h, i, j, k, l, stoi(b)));
 
-    while (stoi(b) < 1000)
+    while (stoi(b) < 10000)
     {
         getline(file,b,',');
         getline(file,c,',');
@@ -75,7 +75,7 @@ BackEnd::BackEnd(QObject *parent) :
     getline(file, l);
     btree.setRoot(btree.insertdataID(nullptr, c, d, e, f, g, h, i, j, k, l, stoi(b)));
 
-    while (stoi(b) < 1000)
+    while (stoi(b) < 10000)
     {
         getline(file,b,',');
         getline(file,c,',');
@@ -165,6 +165,8 @@ void BackEnd::beginSearch(const QString &x)
     mileage = getter.toLocal8Bit().constData();
 
     vector<string> results;
+    results.push_back("Brand\tModel\tYear\tPrice\tTransmission"
+    "\tMileage\tFuel Type\tMPG\tEngine Size");
 
     if(x == "avl")
         atree.searchCar(brand, atree.getRoot(), price, mileage, results);

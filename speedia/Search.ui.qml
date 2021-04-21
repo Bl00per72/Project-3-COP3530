@@ -1,24 +1,24 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-//import io.qt.examples.backend 1.0
+import io.qt.examples.backend 1.0
 import QtQuick.Layouts 1.0
 
 Page {
     id: page
-    width: 600
+    width: 820
     height: 400
 
     title: qsTr("Search")
     property var treeType: ""
 
-    //BackEnd {
-    //    id: backend
-    //}
+    BackEnd {
+        id: backend
+    }
 
     ComboBox {
         id: comboBox
-        x: 163
-        y: 130
+        x: 272
+        y: 135
         width: 276
         height: 43
         model: ["Car Brand", "Audi", "BMW", "Hyundai", "Mercedes", "Skoda","Toyota",  "Vauxhall", "Volkswagen" ]
@@ -27,8 +27,8 @@ Page {
     }
 
     ColumnLayout {
-        x: 250
-        y: 187
+        x: 360
+        y: 192
         spacing: 2
 
 
@@ -47,7 +47,7 @@ Page {
 
 
     ColumnLayout {
-        x: 128
+        x: 238
         y: 23
 
         Slider {
@@ -125,8 +125,8 @@ Page {
 
     Button {
         id: searchButton
-        x: 246
-        y: 311
+        x: 356
+        y: 318
         width: 108
         height: 55
         text: qsTr("Search!")
@@ -138,40 +138,27 @@ Page {
             target: searchButton
             onClicked: {
                 backend.searchTree = treeType
-                text1.text = backend.getResults()
+                textArea.text = backend.getResults() + "\n"
                 page.state = "results"
             }
         }
     }
 
-
-    Text {
-        id: text1
-        x: 226
-        y: 82
-        width: 149
-        height: 236
-        visible: false
-        text: qsTr("Text")
-        font.pixelSize: 12
-    }
-
-
-    ListModel {
-        id: model
-        List
-
-    }
-
     ScrollView {
-        anchors.fill: scrollView
+            id: scrollView
+            anchors.fill: parent
+            anchors.rightMargin: 0
+            anchors.bottomMargin: 0
+            anchors.leftMargin: 0
+            anchors.topMargin: 1
+            visible: false
 
-        ListView {
-            width: scrollView.width
+            TextArea {
+                id: textArea
+                wrapMode: "WordWrap"
+            }
+
         }
-
-    }
-
 
     states: [
         State {
@@ -206,17 +193,25 @@ Page {
                 target: searchButton
                 visible: false
             }
-
             PropertyChanges {
-                target: text1
+                target: scrollView
                 visible: true
+                contentWidth: 50
             }
 
             PropertyChanges {
-                target: scrollView
-                x: 62
-                y: 105
+                target: textArea
+                width: 820
+                height: 430
+                wrapMode: Text.WordWrap
+                textFormat: Text.PlainText
             }
         }
     ]
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:0.75}
+}
+##^##*/

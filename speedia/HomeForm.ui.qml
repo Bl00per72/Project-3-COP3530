@@ -1,8 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.0
 
 Page {
-    width: 600
+    width: 820
     height: 400
     property alias button: newSearch
 
@@ -10,8 +11,8 @@ Page {
 
     Image {
         id: image
-        x: 203
-        y: 23
+        x: 313
+        y: 15
         width: 195
         height: 111
         horizontalAlignment: Image.AlignHCenter
@@ -25,15 +26,15 @@ Page {
         height: 27
         text: qsTr("Speedia")
         font.pointSize: 17
-        anchors.verticalCenterOffset: -115
-        anchors.horizontalCenterOffset: 6
+        anchors.verticalCenterOffset: -129
+        anchors.horizontalCenterOffset: 13
         anchors.centerIn: parent
     }
 
     Rectangle {
         id: rectangle
-        x: 193
-        y: 205
+        x: 303
+        y: 182
         width: 215
         height: 81
         color: "#4cffffff"
@@ -42,8 +43,8 @@ Page {
     }
     Text {
         id: text1
-        x: 203
-        y: 220
+        x: 313
+        y: 196
         width: 195
         height: 72
         text: qsTr("Find your next used car through Speedia! Click the top left menu to view the Search and Results Page or click below for a new search.")
@@ -54,14 +55,17 @@ Page {
 
     Button {
         id: newSearch
-        x: 249
-        y: 325
+        x: 359
+        y: 300
         text: qsTr("New Search")
 
         Connections {
             target: newSearch
             onClicked: stackView.push("Search.ui.qml")
         }
+    }
+
+    ColumnLayout {
     }
 
 }

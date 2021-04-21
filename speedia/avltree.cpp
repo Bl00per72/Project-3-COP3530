@@ -27,9 +27,13 @@ vector<string> AVLTree::searchCar(string brand, Node* root, string price, string
         // If current node's data is equal to target data, print ID and keep traversing through tree
         if (root->brand == brand && stoi(root->price) <= stoi(price) && stoi(root->mileage) <= stoi(mileage))
         {
-            s.push_back(root->brand + " " + root->model + ", Year: " + root->year + " Price: " + root->price + " Transmission: "
-                + root->tran + " Mileage: " + root->mileage + " Fuel Type: " + root-> fuelType + " MPG: " + root->mpg + " Engine Size: " + root->engineSize);
-            //cout << endl;
+            s.push_back(root->brand + "\t" + root->model + "\t" + root->year + "\t" + root->price + "\t"
+                + root->tran + "\t\t" + root->mileage + "\t" + root-> fuelType + "\t" + root->mpg + "\t" + root->engineSize);
+
+            //s.push_back(root->brand + " " + root->model + ", Year: " + root->year + " Price: " + root->price + " Transmission: "
+            //    + root->tran + " Mileage: " + root->mileage + " Fuel Type: " + root-> fuelType + " MPG: " + root->mpg + " Engine Size: " + root->engineSize);
+
+
             this->containsdata = true;
             searchCar(brand, root->left, price, mileage, s);
             searchCar(brand, root->right, price, mileage, s);

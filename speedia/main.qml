@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.11
 
 ApplicationWindow {
     id: window
-    width: 640
+    width: 850
     height: 480
     visible: true
     title: qsTr("Speedia")
