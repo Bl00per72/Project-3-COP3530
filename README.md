@@ -12,4 +12,8 @@ Motivation: ​Many people are looking into buying cars, but many of those peopl
 
 Features: ​To find the price point for a certain used car, we will use the dataset to search for cars based on the specifications provided by the user, such as registration year, mileage, and car brand. When the program outputs a specific row from the dataset (or set of rows from the dataset), which resembles the data of a car (or set of cars), the problem will have been solved.
 
-How to run: open SpeediaAppInstaller.exe to install Speedia on your system. After installing open the folder and run Speedia.exe and you're set.
+How to run: Download the installer found at: 
+
+https://drive.google.com/file/d/1siCWGjBUTd7R8obAjQoNDTqVmI4vWkGh/view?usp=sharing
+
+open SpeediaAppInstaller.exe to install Speedia on your system. After installing open the folder and run Speedia.exe and you're set.
